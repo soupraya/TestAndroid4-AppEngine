@@ -1,0 +1,213 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://soupraya-test1.appspot.com/_ah/api",
+  "name" : "todoendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://soupraya-test1.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "velan.com",
+  "ownerName" : "velan.com",
+  "packagePath" : "testandroid4",
+  "methods" : {
+    "todoendpoint.updateTodo" : {
+      "path" : "todo",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.velan.testandroid4.TodoEndpoint.updateTodo",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "todoendpoint.insertTodo" : {
+      "path" : "todo",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.velan.testandroid4.TodoEndpoint.insertTodo",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "todoendpoint.getTodo" : {
+      "path" : "todo/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.velan.testandroid4.TodoEndpoint.getTodo",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "todoendpoint.removeTodo" : {
+      "path" : "todo/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.velan.testandroid4.TodoEndpoint.removeTodo",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "todoendpoint.listTodo" : {
+      "path" : "todo",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.velan.testandroid4.TodoEndpoint.listTodo",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Todo" : {
+        "id" : "Todo",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "author" : {
+            "type" : "string"
+          },
+          "url" : {
+            "type" : "string"
+          },
+          "finished" : {
+            "type" : "boolean"
+          },
+          "a" : {
+            "type" : "number"
+          },
+          "b" : {
+            "type" : "number"
+          },
+          "shortDescription" : {
+            "type" : "string"
+          },
+          "longDescription" : {
+            "type" : "string"
+          },
+          "c" : {
+            "type" : "number"
+          }
+        }
+      },
+      "CollectionResponse_Todo" : {
+        "id" : "CollectionResponse_Todo",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Todo"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.velan.testandroid4.TodoEndpoint.updateTodo" : {
+        "request" : {
+          "$ref" : "Todo"
+        },
+        "response" : {
+          "$ref" : "Todo"
+        }
+      },
+      "com.velan.testandroid4.TodoEndpoint.insertTodo" : {
+        "request" : {
+          "$ref" : "Todo"
+        },
+        "response" : {
+          "$ref" : "Todo"
+        }
+      },
+      "com.velan.testandroid4.TodoEndpoint.getTodo" : {
+        "response" : {
+          "$ref" : "Todo"
+        }
+      },
+      "com.velan.testandroid4.TodoEndpoint.removeTodo" : {
+      },
+      "com.velan.testandroid4.TodoEndpoint.listTodo" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Todo"
+        }
+      }
+    }
+  }
+}
