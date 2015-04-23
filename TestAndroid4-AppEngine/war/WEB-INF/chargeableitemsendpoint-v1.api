@@ -27,6 +27,22 @@
   "ownerName" : "velan.com",
   "packagePath" : "testandroid4",
   "methods" : {
+    "chargeableitemsendpoint.insertChargeableItems" : {
+      "path" : "chargeableitems",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.velan.testandroid4.ChargeableItemsEndpoint.insertChargeableItems",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "chargeableitemsendpoint.listChargeableItems" : {
       "path" : "chargeableitems",
       "httpMethod" : "GET",
@@ -47,22 +63,6 @@
           }
         },
         "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "chargeableitemsendpoint.insertChargeableItems" : {
-      "path" : "chargeableitems",
-      "httpMethod" : "POST",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.velan.testandroid4.ChargeableItemsEndpoint.insertChargeableItems",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -129,21 +129,6 @@
   },
   "descriptor" : {
     "schemas" : {
-      "CollectionResponse_ChargeableItems" : {
-        "id" : "CollectionResponse_ChargeableItems",
-        "type" : "object",
-        "properties" : {
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "ChargeableItems"
-            }
-          },
-          "nextPageToken" : {
-            "type" : "string"
-          }
-        }
-      },
       "ChargeableItems" : {
         "id" : "ChargeableItems",
         "type" : "object",
@@ -174,20 +159,35 @@
             "type" : "number"
           }
         }
+      },
+      "CollectionResponse_ChargeableItems" : {
+        "id" : "CollectionResponse_ChargeableItems",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "ChargeableItems"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
       }
     },
     "methods" : {
-      "com.velan.testandroid4.ChargeableItemsEndpoint.listChargeableItems" : {
-        "response" : {
-          "$ref" : "CollectionResponse_ChargeableItems"
-        }
-      },
       "com.velan.testandroid4.ChargeableItemsEndpoint.insertChargeableItems" : {
         "request" : {
           "$ref" : "ChargeableItems"
         },
         "response" : {
           "$ref" : "ChargeableItems"
+        }
+      },
+      "com.velan.testandroid4.ChargeableItemsEndpoint.listChargeableItems" : {
+        "response" : {
+          "$ref" : "CollectionResponse_ChargeableItems"
         }
       },
       "com.velan.testandroid4.ChargeableItemsEndpoint.removeChargeableItems" : {

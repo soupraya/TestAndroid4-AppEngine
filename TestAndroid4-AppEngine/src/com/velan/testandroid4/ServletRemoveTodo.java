@@ -14,7 +14,7 @@ public class ServletRemoveTodo extends HttpServlet {
   public void doGet(HttpServletRequest req, HttpServletResponse resp)
   throws IOException {
     String id = req.getParameter("id");
-    Dao.INSTANCE.remove(Long.parseLong(id));
+    Dao.INSTANCE.removeCostTotal(Long.parseLong(id));
     resp.sendRedirect("/TodoApplication.jsp");
   }
 }

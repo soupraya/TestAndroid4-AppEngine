@@ -3,18 +3,18 @@ package com.velan.testandroid4;
 import java.util.List;
 
 public class CalculateTodoTask {
-	Todo todo;
-	Task task;
+	CostItem todo;
+	CostTotal task;
 	
 	public CalculateTodoTask(String author, String summary, String description, String url,String A, String B) {
-		todo = new Todo(author, summary, description, url,A,B);
+		todo = new CostItem(author, summary, description, url,A,B);
 	    CalculateC();
 	    
 	    //Dao.INSTANCE.add(user.getUserId(), summary, longDescription, url,A,B);
 	    Dao.INSTANCE.add(todo);
 	    
 	    System.out.println("Creating new task ");
-	    List<Task> listTask = Dao.INSTANCE.getTasks(author);
+	    List<CostTotal> listTask = Dao.INSTANCE.getCostTotals(author);
 	    
 	    boolean fineshed = false;
 	    Double taskCTTmp = 0.0;
@@ -25,31 +25,31 @@ public class CalculateTodoTask {
 	    	if(task.getProject().equals(summary))
 	    	{
 	    		fineshed = true;
-	    		taskCTTmp=task.getCT();
-	    		Dao.INSTANCE.removeTask(task.getId());
+	    		taskCTTmp=task.getTotal();
+	    		Dao.INSTANCE.removeCostTotal(task.getId());
 	    	}
 	    }
 	    
 	    
-	    task = new Task(author, summary);	    
-	    task.setCT(taskCTTmp);
+	    task = new CostTotal(author, summary);	    
+	    task.setTotal(taskCTTmp);
 	    CalculateCT();
 	    //Dao.INSTANCE.addTask(user.getUserId(),summary, longDescription, AT, BT);
-	    Dao.INSTANCE.addTask(task);
+	    Dao.INSTANCE.addCostTotal(task);
 	    //velan & Sonnie = <3 <3 <3 ....
 	    }
 
 	
 	public void CalculateC() {
 		Double C;
-		C = todo.getA()*todo.getB();
-		todo.setC(C);
+		C = todo.getUnitCost()*todo.getNumberOfItem();
+		todo.setTotal(C);
 	}
 	
 	public void CalculateCT() {
 		Double CT;
-		CT = task.getCT()+todo.getC();
-		task.setCT(CT);
+		CT = task.getTotal()+todo.getTotal();
+		task.setTotal(CT);
 	}
 
 }

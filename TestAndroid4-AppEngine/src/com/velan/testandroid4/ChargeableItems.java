@@ -11,7 +11,10 @@ public class ChargeableItems {
 	  @Id
 	  @GeneratedValue(strategy = GenerationType.IDENTITY)
 	  private Long id;
-	  private String author;
+
+
+
+	private String author;
 	  private String project;
 	  private String description;
 	  private boolean finished;
@@ -37,6 +40,10 @@ public class ChargeableItems {
 
 	public void setNumberOfItems(Integer numberOfItems) {
 		this.numberOfItems = numberOfItems;
+	}
+	
+	  public Integer getNumberOfItems() {
+		return numberOfItems;
 	}
 
 	public Long getId() {

@@ -13,20 +13,24 @@ import javax.persistence.Id;
  */
 
 @Entity
-public class Task {
+public class CostTotal {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String author;
   private String project;
   private boolean finished;
-  
-  private Double AT=0.0;
-  private Double BT=0.0;
-  private Double CT=0.0;
-  private Double DT=0.0;
+  private Double total=0.0;
 
-  public Task(String author, String project) {
+  public Double getTotal() {
+	return total;
+}
+
+public void setTotal(Double total) {
+	this.total = total;
+}
+
+public CostTotal(String author, String project) {
 	  this.author = author;
 	  this.project = project;
   }
@@ -59,37 +63,5 @@ public class Task {
   public void setFinished(boolean finished) {
     this.finished = finished;
   }
-
-public Double getAT() {
-	return AT;
-}
-
-public void setAT(Double aT) {
-	AT = aT;
-}
-
-public Double getBT() {
-	return BT;
-}
-
-public void setBT(Double bT) {
-	BT = bT;
-}
-
-public Double getCT() {
-	return CT;
-}
-
-public void setCT(Double dT) {
-	CT = dT;
-}
-
-public Double getDT() {
-	return DT;
-}
-
-public void setDT(Double dT) {
-	DT = dT;
-}
 
 } 

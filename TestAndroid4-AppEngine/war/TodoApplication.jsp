@@ -3,8 +3,8 @@
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.google.appengine.api.users.UserService" %>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
-<%@ page import="com.velan.testandroid4.Todo" %>
-<%@ page import="com.velan.testandroid4.Task" %>
+<%@ page import="com.velan.testandroid4.CostItem" %>
+<%@ page import="com.velan.testandroid4.CostTotal" %>
 <%@ page import="com.velan.testandroid4.Dao" %>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
 
 <html>
   <head>
-    <title>Todos</title>
+    <title>Costs</title>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
       <meta charset="utf-8"> 
   </head>
@@ -27,14 +27,14 @@ User user = userService.getCurrentUser();
 
 String url = userService.createLoginURL(request.getRequestURI());
 String urlLinktext = "Login";
-List<Todo> todos = new ArrayList<Todo>();
-List<Task> tasks = new ArrayList<Task>();
+List<CostItem> costItems = new ArrayList<CostItem>();
+List<CostTotal> costTotals = new ArrayList<CostTotal>();
 
 if (user != null){
     url = userService.createLogoutURL(request.getRequestURI());
     urlLinktext = "Logout";
-    todos = dao.getTodos(user.getUserId());
-    tasks = dao.getTasks(user.getUserId());
+    costItems = dao.getCostItems(user.getUserId());
+    costTotals = dao.getCostTotals(user.getUserId());
 }
     
 %>
@@ -42,51 +42,43 @@ if (user != null){
     <div class="line"></div>
     <div class="topLine">
       <div style="float: left;"><img src="images/todo.png" /></div>
-      <div style="float: left;" class="headline">Todos</div>
+      <div style="float: left;" class="headline">Costs</div>
       <div style="float: right;"><a href="<%=url%>"><%=urlLinktext%></a> <%=(user==null? "" : user.getNickname())%></div>
     </div>
   </div>
 
 <div style="clear: both;"/>
-You have a total number of <%= todos.size() %>  Todos.
-You have a total number of <%= tasks.size() %>  Tasks.
+You have a total number of <%= costItems.size() %>  costItems.
+You have a total number of <%= costTotals.size() %>  costTotals.
 
 <table>
   	<tr>
-      <th>Short description </th>
-      <th>Long Description</th>
-      <th>URL</th>
+      <th>Description </th>
       <th>Is finished?</th>
-      <th>A</th>
-      <th>B</th>
-      <th>A*B</th>
+      <th>Number of items</th>
+      <th>Unit Cost</th>
+      <th>Total</th>
       <th>Done</th>
     </tr>
-<% for (Todo todo : todos) {%>
+<% for (CostItem i : costItems) {%>
 <tr> 
 <td>
-<%=todo.getShortDescription()%>
+<%=i.getDescription()%>
 </td>
 <td>
-<%=todo.getLongDescription()%>
+<%=i.isFinished()%>
 </td>
 <td>
-<%=todo.getUrl()%>
+<%=i.getNumberOfItem()%>
 </td>
 <td>
-<%=todo.isFinished()%>
+<%=i.getUnitCost()%>
 </td>
 <td>
-<%=todo.getA()%>
+<%=i.getTotal()%>
 </td>
 <td>
-<%=todo.getB()%>
-</td>
-<td>
-<%=todo.getC()%>
-</td>
-<td>
-<a class="done" href="/done?id=<%=todo.getId()%>" >Done</a>
+<a class="done" href="/done?id=<%=costItem.getId()%>" >Done</a>
 </td>
 </tr> 
 <%}
@@ -95,20 +87,12 @@ You have a total number of <%= tasks.size() %>  Tasks.
 
 <table>
   <tr>
-      <th>AT</th>
-      <th>BT</th>
-      <th>CT</th>
+      <th>Cost Total</th>
     </tr>
-<% for (Task task : tasks) {%>
+<% for (CostTotal costTotal : costTotals) {%>
 <tr> 
 <td>
-<%=task.getAT()%>
-</td>
-<td>
-<%=task.getBT()%>
-</td>
-<td>
-<%=task.getCT()%>
+<%=costTotal.getTotal()%>
 </td>
 </tr>
 <%}

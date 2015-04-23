@@ -9,20 +9,20 @@ import javax.persistence.Query;
 public enum Dao {
   INSTANCE;
 
-  public List<Todo> listTodos() {
+  public List<CostItem> listCostItems() {
     EntityManager em = EMFService.get().createEntityManager();
     // read the existing entries
-    Query q = em.createQuery("select m from Todo m");
-    List<Todo> todos = q.getResultList();
-    return todos;
+    Query q = em.createQuery("select m from CostItem m");
+    List<CostItem> costTotals = q.getResultList();
+    return costTotals;
   }
 
-  public List<Task> listTasks() {
+  public List<CostTotal> listCostTotals() {
 	    EntityManager em = EMFService.get().createEntityManager();
 	    // read the existing entries
-	    Query q = em.createQuery("select m from Task m");
-	    List<Task> tasks = q.getResultList();
-	    return tasks;
+	    Query q = em.createQuery("select m from CostTotal m");
+	    List<CostTotal> costTotals = q.getResultList();
+	    return costTotals;
 	  }
   
   
@@ -36,7 +36,7 @@ public enum Dao {
     }
   }*/
   
-  public void add(Todo todo) {
+  public void add(CostItem todo) {
 	    synchronized (this) {
 	      EntityManager em = EMFService.get().createEntityManager();
 	      //Todo todo = new Todo(userId, summary, description, url,A,B);
@@ -46,7 +46,7 @@ public enum Dao {
 	  }
   
 
-  public void addTask(Task task) {
+  public void addCostTotal(CostTotal task) {
 	    synchronized (this) {
 	      EntityManager em = EMFService.get().createEntityManager();
 	      //Task task = new Task(author, summary, description, AT, BT);
@@ -55,38 +55,38 @@ public enum Dao {
 	    }
 	  }
   
-  public List<Todo> getTodos(String userId) {
+  public List<CostItem> getCostItems(String userId) {
     EntityManager em = EMFService.get().createEntityManager();
     Query q = em
-        .createQuery("select t from Todo t where t.author = :userId");
+        .createQuery("select t from CostItem t where t.author = :userId");
     q.setParameter("userId", userId);
-    List<Todo> todos = q.getResultList();
+    List<CostItem> todos = q.getResultList();
     return todos;
   }
 
-  public void remove(long id) {
+  public void removeCostItem(long id) {
     EntityManager em = EMFService.get().createEntityManager();
     try {
-      Todo todo = em.find(Todo.class, id);
+      CostItem todo = em.find(CostItem.class, id);
       //em.remove(todo);
       todo.setFinished(true);
     } finally {
       em.close();
     }
   }
-    public List<Task> getTasks(String userId) {
+    public List<CostTotal> getCostTotals(String userId) {
         EntityManager em = EMFService.get().createEntityManager();
         Query q = em
-            .createQuery("select t from Task t where t.author = :userId");
+            .createQuery("select t from CostTotal t where t.author = :userId");
         q.setParameter("userId", userId);
-        List<Task> tasks = q.getResultList();
+        List<CostTotal> tasks = q.getResultList();
         return tasks;
       }
 
-      public void removeTask(long id) {
+      public void removeCostTotal(long id) {
         EntityManager em = EMFService.get().createEntityManager();
         try {
-          Task task = em.find(Task.class, id);
+          CostTotal task = em.find(CostTotal.class, id);
           em.remove(task);
         } finally {
           em.close();

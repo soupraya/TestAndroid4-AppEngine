@@ -23,7 +23,7 @@
   <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
   <init-param>
    <param-name>services</param-name>
-   <param-value>com.velan.testandroid4.ChargeableItemsEndpoint,com.velan.testandroid4.ChargeableItemsTotalEndpoint,com.velan.testandroid4.DeviceInfoEndpoint,com.velan.testandroid4.MessageEndpoint,com.velan.testandroid4.TaskEndpoint,com.velan.testandroid4.TodoEndpoint</param-value>
+   <param-value>com.velan.testandroid4.ChargeableItemsEndpoint,com.velan.testandroid4.ChargeableItemsTotalEndpoint,com.velan.testandroid4.CostItemEndpoint,com.velan.testandroid4.CostTotalEndpoint,com.velan.testandroid4.DeviceInfoEndpoint,com.velan.testandroid4.MessageEndpoint</param-value>
   </init-param>
  </servlet>
  <servlet-mapping>
